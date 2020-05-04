@@ -1,2 +1,2 @@
 # filebeat
-filebeat 7.4.2 in docker
+filebeat 7.4.2 in docker.
