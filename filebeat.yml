@@ -4,29 +4,68 @@ filebeat.config.modules:
   enabled: true
   path: /usr/share/filebeat/modules.d/*.yml
 
-filebeat.inputs:
-- type: log
-  paths:
-    - /var/log/host/conn.log
-  tags: ["zeek","zeek_conn"]
-- type: log
-  paths:
-    - /var/log/host/dns.log
-  tags: ["zeek","zeek_dns"]
-- type: log
-  paths:
-    - /var/log/host/http.log
-  tags: ["zeek","zeek_http"]
-- type: log
-  paths:
-    - /var/log/host/ssl.log
-  tags: ["zeek","zeek_ssl"]
+filebeat.modules:
+- module: zeek
+  # All logs
+  connection:
+    enabled: true
+    var.paths: ["/var/log/host/conn.log"]
+  dhcp:
+    enabled: true
+    var.paths: ["/var/log/host/dhcp.log"]  
+  dns: 
+    enabled: true
+    var.paths: ["/var/log/host/dns.log"]
+  http:
+    enabled: true
+    var.paths: ["/var/log/host/http.log"]
+  notice:
+    enabled: true
+    var.paths: ["/var/log/host/notice.log"]
+  rdp:
+    enabled: true
+    var.paths: ["/var/log/host/rdp.log"]
+  smb_cmd:
+    enabled: true
+    var.paths: ["/var/log/host/smb_cmd.log"]
+  smb_files:
+    enabled: true
+    var.paths: ["/var/log/host/smb_files.log"]
+  smb_mapping:
+    enabled: true
+    var.paths: ["/var/log/host/smb_mapping.log"]
+  ssh:
+    enabled: true
+    var.paths: ["/var/log/host/ssh.log"]
+  ssl:
+    enabled: true
+    var.paths: ["/var/log/host/ssl.log"]
+  signatures:
+    enabled: false
 
-output.logstash:
-  hosts: ["10.0.0.6:5044"]
+# filebeat.inputs:
+# - type: log
+#   paths:
+#     - /var/log/host/conn.log
+#   tags: ["zeek","zeek_conn"]
+# - type: log
+#   paths:
+#     - /var/log/host/dns.log
+#   tags: ["zeek","zeek_dns"]
+# - type: log
+#   paths:
+#     - /var/log/host/http.log
+#   tags: ["zeek","zeek_http"]
+# - type: log
+#   paths:
+#     - /var/log/host/ssl.log
+#   tags: ["zeek","zeek_ssl"]
+
+# output.logstash:
+#   hosts: ["10.0.0.6:5044"]
 
 # enable the lines below to load dashboards into ELASTIC/KIBANA SIEM with ./filebeat setup (from your docker container)
-#output.elasticsearch:
-#  hosts: ["10.0.0.6:9200"]
+output.elasticsearch:
+  hosts: ["10.0.0.6:9200"]
 #setup.kibana:
-#  host: "http://10.0.0.6:5601"
+  host: "http://10.0.0.6:5601"
