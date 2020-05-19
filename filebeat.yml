@@ -1,3 +1,5 @@
+# run this in your docker container: ./filebeat modules enable zeek
+
 filebeat.config.modules:
   enabled: true
   path: /usr/share/filebeat/modules.d/*.yml
