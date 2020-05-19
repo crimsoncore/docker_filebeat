@@ -22,3 +22,9 @@ filebeat.inputs:
 
 output.logstash:
   hosts: ["10.0.0.6:5044"]
+
+# enable the lines below to load dashboards into ELASTIC/KIBANA SIEM with ./filebeat setup (from your docker container)
+#output.elasticsearch:
+#  hosts: ["10.0.0.6:9200"]
+#setup.kibana:
+#  host: "http://10.0.0.6:5601"
