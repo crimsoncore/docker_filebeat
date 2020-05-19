@@ -1,3 +1,7 @@
+filebeat.config.modules:
+  enabled: true
+  path: /usr/share/filebeat/modules.d/*.yml
+
 filebeat.inputs:
 - type: log
   paths:
@@ -14,7 +18,7 @@ filebeat.inputs:
 - type: log
   paths:
     - /var/log/host/ssl.log
-  tags: ["zeek","zeek_ssl"] 
+  tags: ["zeek","zeek_ssl"]
 
 output.logstash:
-  hosts: ["172.16.100.157:5044"]
+  hosts: ["10.0.0.6:5044"]
