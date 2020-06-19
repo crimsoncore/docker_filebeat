@@ -3,7 +3,7 @@ services:
   filebeat:
     container_name: filebeat
     hostname: $HOSTNAME 
-    image: docker.elastic.co/beats/filebeat:7.6.2
+    image: docker.elastic.co/beats/filebeat:7.8.0
     volumes:
      - /opt/threathunt/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
      - /opt/threathunt/filebeat/modules.d:/usr/share/filebeat/modules.d
